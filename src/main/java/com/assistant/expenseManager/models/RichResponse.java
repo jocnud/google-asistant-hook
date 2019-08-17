@@ -11,5 +11,5 @@ import java.util.List;
 @AllArgsConstructor
 public class RichResponse {
 
-    private Items items;
+    private List<Object> items;
 }
