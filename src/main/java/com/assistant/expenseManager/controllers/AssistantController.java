@@ -34,6 +34,8 @@ public class AssistantController {
             throws ExecutionException, InterruptedException {
         App actionApp = new ExpenseApp();
         String resp = actionApp.handleRequest(body, null).get();
+
+        log.info("response {} ",resp);
         return ResponseEntity.ok(resp);
     }
 }

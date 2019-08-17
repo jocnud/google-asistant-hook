@@ -27,6 +27,9 @@ public class ExpenseApp extends DialogflowApp {
         Map<String, Double> amountMap = (Map<String, Double>) actionRequest.getParameter("unit-currency");
         Double amount = amountMap.get("amount");
 
+        log.info("Action request received {} {} ", expenseType,amount);
+
+
         BasicCard basicCard = new BasicCard();
         basicCard.setFormattedText(String.format(" Expense of %s rupees has been added to %f ", amount,
                 expenseType));
