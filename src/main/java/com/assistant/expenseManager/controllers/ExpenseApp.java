@@ -23,7 +23,7 @@ public class ExpenseApp extends DialogflowApp {
 
         log.info("Action request received {} ", actionRequest);
 
-        String expenseType = (String) actionRequest.getParameter("expenseType");
+        String expenseType = (String) actionRequest.getParameter("ExpenseType");
         Map<String, Double> amountMap = (Map<String, Double>) actionRequest.getParameter("unit-currency");
         Double amount = amountMap.get("amount");
 
@@ -41,7 +41,7 @@ public class ExpenseApp extends DialogflowApp {
 
         RichResponse richResponse = new RichResponse();
         RichResponseItem richResponseItem = new RichResponseItem();
-        //richResponseItem.setBasicCard(basicCard);
+        richResponseItem.setBasicCard(basicCard);
 
         SimpleResponse simpleResponse = new SimpleResponse();
         simpleResponse.setTextToSpeech(String.format(" Expense of %s rupees has been added to %s ", amount,
