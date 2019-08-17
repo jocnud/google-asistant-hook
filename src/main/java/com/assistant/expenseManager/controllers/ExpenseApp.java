@@ -24,11 +24,11 @@ public class ExpenseApp extends DialogflowApp {
         log.info("Action request received {} ", actionRequest);
 
         String expenseType = (String) actionRequest.getParameter("expenseType");
-        Map<String, String> amountMap = (Map<String, String>) actionRequest.getParameter("unit-currency");
-        String amount = amountMap.get("amount");
+        Map<String, Double> amountMap = (Map<String, Double>) actionRequest.getParameter("unit-currency");
+        Double amount = amountMap.get("amount");
 
         BasicCard basicCard = new BasicCard();
-        basicCard.setFormattedText(String.format(" Expense of %s rupees has been added to %s ", amount,
+        basicCard.setFormattedText(String.format(" Expense of %s rupees has been added to %f ", amount,
                 expenseType));
         basicCard.setTitle("EXPENSE ADDED");
         Image image = new Image();
