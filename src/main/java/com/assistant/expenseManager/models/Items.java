@@ -4,13 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class GooglePayload {
+public class Items {
 
-    private boolean expectUserResponse;
-    private RichResponse richResponse;
-
-
+    private List<Object> items;
 }

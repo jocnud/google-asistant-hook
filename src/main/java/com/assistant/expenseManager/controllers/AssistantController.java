@@ -1,10 +1,13 @@
 package com.assistant.expenseManager.controllers;
 
-import com.assistant.expenseManager.models.BasicCard;
 import com.assistant.expenseManager.models.FF;
-import com.assistant.expenseManager.models.FulfillmentMessage;
 import com.assistant.expenseManager.models.FulfillmentRequest;
 import com.assistant.expenseManager.models.FulfillmentResponse;
+import com.assistant.expenseManager.models.GooglePayload;
+import com.assistant.expenseManager.models.Items;
+import com.assistant.expenseManager.models.Payload;
+import com.assistant.expenseManager.models.RichResponse;
+import com.assistant.expenseManager.models.SimpleResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -40,18 +43,19 @@ public class AssistantController {
         FulfillmentResponse ffR = ff.getResponse();
 
 
-        FulfillmentMessage ffm = FulfillmentMessage.builder()
-                .basicCard(BasicCard.builder()
-                        .title("Shahbaz Add Title")
-                        .formattedText(" Got the intent " + name)
-                        .subtitle("Add Expense")
-                        .build())
-                .build();
+        RichResponse richResponse = new RichResponse();
 
-        ffR.setFulfillmentMessages(Arrays.asList(ffm));
+        Items items = new Items();
+        items.setItems(Arrays.asList(
+                SimpleResponse.builder().displayText("Works").textToSpeech("Blody hell it worked").build()));
+
+        richResponse.setItems(items);
+
+        GooglePayload googlePayload = new GooglePayload();
+        googlePayload.setRichResponse(richResponse);
+        ffR.setPayload(Payload.builder().google(googlePayload).build());
 
 
-        ffR.setFulfillmentText(" Hello your intent is " + name);
         return ResponseEntity.ok(ffR);
     }
 }
