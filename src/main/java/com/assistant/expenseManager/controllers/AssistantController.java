@@ -53,15 +53,12 @@ public class AssistantController {
 
         richResponse.setItems(Arrays.asList(holder));
 
-
-//        richResponse.setItems(Arrays.asList(
-//                SimpleResponse.builder().displayText("Works").textToSpeech("Nirvik it works it worked").build()));
-
         GooglePayload googlePayload = new GooglePayload();
         googlePayload.setRichResponse(richResponse);
 
 
         ffR.setPayload(Payload.builder().google(googlePayload).build());
+        ffR.setFulfillmentText(" sendinf");
 
         return ResponseEntity.ok(ffR);
     }
