@@ -1,5 +1,6 @@
 package com.assistant.expenseManager.controllers;
 
+import com.assistant.expenseManager.models.FF;
 import com.assistant.expenseManager.models.FulfillmentRequest;
 import com.assistant.expenseManager.models.FulfillmentResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -31,12 +32,9 @@ public class AssistantController {
     public ResponseEntity<FulfillmentResponse> assistantRequest(@RequestBody FulfillmentRequest fulfillmentRequest) {
 
         String name = fulfillmentRequest.getQueryResult().getIntent().getName();
-
-
-        FulfillmentResponse response = FulfillmentResponse.builder()
-                .fulfillmentText(" Hello your intent is " + name)
-                .build();
-
-        return ResponseEntity.ok(response);
+        FF ff = new FF(fulfillmentRequest);
+        FulfillmentResponse ffR = ff.getResponse();
+        ffR.setFulfillmentText(" Hello your intent is " + name);
+        return ResponseEntity.ok(ffR);
     }
 }

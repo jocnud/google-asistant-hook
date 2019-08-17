@@ -1,6 +1,9 @@
 package com.assistant.expenseManager.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -8,6 +11,9 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class FieldErrorResource {
     private String resource;
     private String field;
