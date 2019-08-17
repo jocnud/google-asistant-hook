@@ -32,7 +32,6 @@ public class AssistantController {
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> assistantRequest(@RequestBody String body)
             throws ExecutionException, InterruptedException {
-
         App actionApp = new ExpenseApp();
         String resp = actionApp.handleRequest(body, null).get();
         return ResponseEntity.ok(resp);
