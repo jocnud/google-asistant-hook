@@ -40,15 +40,17 @@ public class ExpenseApp extends DialogflowApp {
 
 
         RichResponse richResponse = new RichResponse();
-        RichResponseItem richResponseItem = new RichResponseItem();
-        richResponseItem.setBasicCard(basicCard);
+
+        RichResponseItem richResponseItem1 = new RichResponseItem();
+        RichResponseItem richResponseItem2 = new RichResponseItem();
+        richResponseItem1.setBasicCard(basicCard);
 
         SimpleResponse simpleResponse = new SimpleResponse();
         simpleResponse.setTextToSpeech(String.format(" Expense of %s rupees has been added to %s ", amount,
                 expenseType));
-        richResponseItem.setSimpleResponse(simpleResponse);
+        richResponseItem2.setSimpleResponse(simpleResponse);
 
-        richResponse.setItems(Arrays.asList(richResponseItem));
+        richResponse.setItems(Arrays.asList(richResponseItem1,richResponseItem2));
 
         ResponseBuilder responseBuilder = new ResponseBuilder();
         responseBuilder.add(richResponse);
