@@ -35,7 +35,7 @@ public class AssistantController {
 
     @PostMapping(path = "/expense", produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<FulfillmentResponse> assistantRequest(@RequestBody FulfillmentRequest fulfillmentRequest) {
+    public ResponseEntity<Payload> assistantRequest(@RequestBody FulfillmentRequest fulfillmentRequest) {
 
         String name = fulfillmentRequest.getQueryResult().getIntent().getDisplayName();
         FF ff = new FF(fulfillmentRequest);
@@ -49,9 +49,7 @@ public class AssistantController {
 
         GooglePayload googlePayload = new GooglePayload();
         googlePayload.setRichResponse(richResponse);
-        ffR.setPayload(Payload.builder().google(googlePayload).build());
 
-
-        return ResponseEntity.ok(ffR);
+        return ResponseEntity.ok(Payload.builder().google(googlePayload).build());
     }
 }
