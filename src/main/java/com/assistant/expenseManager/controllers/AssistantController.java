@@ -1,6 +1,5 @@
 package com.assistant.expenseManager.controllers;
 
-import com.assistant.expenseManager.models.FulfillmentResponse;
 import com.google.actions.api.App;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -34,9 +33,8 @@ public class AssistantController {
     public ResponseEntity<String> assistantRequest(@RequestBody String body)
             throws ExecutionException, InterruptedException {
 
-        App actionApp = new SampleAction();
-        String resp = actionApp.handleRequest(body,null).get();
-
+        App actionApp = new ExpenseApp();
+        String resp = actionApp.handleRequest(body, null).get();
         return ResponseEntity.ok(resp);
     }
 }
