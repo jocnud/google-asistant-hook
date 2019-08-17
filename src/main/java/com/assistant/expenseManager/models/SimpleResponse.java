@@ -1,5 +1,6 @@
 package com.assistant.expenseManager.models;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

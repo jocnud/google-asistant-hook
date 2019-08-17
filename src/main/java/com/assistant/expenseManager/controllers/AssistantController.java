@@ -4,6 +4,7 @@ import com.assistant.expenseManager.models.FF;
 import com.assistant.expenseManager.models.FulfillmentRequest;
 import com.assistant.expenseManager.models.FulfillmentResponse;
 import com.assistant.expenseManager.models.GooglePayload;
+import com.assistant.expenseManager.models.Holder;
 import com.assistant.expenseManager.models.Payload;
 import com.assistant.expenseManager.models.RichResponse;
 import com.assistant.expenseManager.models.SimpleResponse;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
+
 
 @Slf4j
 @RestController
@@ -44,8 +46,16 @@ public class AssistantController {
 
         RichResponse richResponse = new RichResponse();
 
-        richResponse.setItems(Arrays.asList(
-                SimpleResponse.builder().displayText("Works").textToSpeech("Nirvik it works it worked").build()));
+        Holder holder = new Holder();
+        holder.setSimpleResponse(
+                SimpleResponse.builder().displayText("Works").textToSpeech("Nirvik it works it worked").build());
+
+
+        richResponse.setItems(Arrays.asList(holder));
+
+
+//        richResponse.setItems(Arrays.asList(
+//                SimpleResponse.builder().displayText("Works").textToSpeech("Nirvik it works it worked").build()));
 
         GooglePayload googlePayload = new GooglePayload();
         googlePayload.setRichResponse(richResponse);
