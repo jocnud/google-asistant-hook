@@ -31,7 +31,7 @@ public class ExpenseApp extends DialogflowApp {
 
 
         BasicCard basicCard = new BasicCard();
-        basicCard.setFormattedText(String.format(" Expense of %s rupees has been added to %f ", amount,
+        basicCard.setFormattedText(String.format(" Expense of %f rupees has been added to %s ", amount,
                 expenseType));
         basicCard.setTitle("EXPENSE ADDED");
         Image image = new Image();
