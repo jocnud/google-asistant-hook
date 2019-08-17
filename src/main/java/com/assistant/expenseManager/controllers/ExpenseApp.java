@@ -9,13 +9,9 @@ import com.google.api.services.actions_fulfillment.v2.model.BasicCard;
 import com.google.api.services.actions_fulfillment.v2.model.Button;
 import com.google.api.services.actions_fulfillment.v2.model.Image;
 import com.google.api.services.actions_fulfillment.v2.model.OpenUrlAction;
-import com.google.api.services.actions_fulfillment.v2.model.RichResponse;
-import com.google.api.services.actions_fulfillment.v2.model.RichResponseItem;
-import com.google.api.services.actions_fulfillment.v2.model.SimpleResponse;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -35,52 +31,30 @@ public class ExpenseApp extends DialogflowApp {
         Map<String, Double> amountMap = (Map<String, Double>) actionRequest.getParameter("unit-currency");
         Double amount = amountMap.get("amount");
 
-        log.info("Action request received {} {} ", expenseType,amount);
+        log.info("Action request received {} {} ", expenseType, amount);
 
-
-        BasicCard basicCard = new BasicCard();
-        basicCard.setFormattedText(String.format(" Expense of %f rupees has been added to %s ", amount,
-                expenseType));
-        basicCard.setTitle("EXPENSE ADDED");
-        Image image = new Image();
-        image.setUrl("https://github.com/jocnud/jocnud.github.io/blob/master/images/s4.jpg");
-        basicCard.setImage(image);
-
-
-        RichResponse richResponse = new RichResponse();
-
-        RichResponseItem richResponseItem1 = new RichResponseItem();
-        RichResponseItem richResponseItem2 = new RichResponseItem();
-        richResponseItem1.setBasicCard(basicCard);
-
-        SimpleResponse simpleResponse = new SimpleResponse();
-        simpleResponse.setTextToSpeech(String.format(" Expense of %s rupees has been added to %s ", amount,
-                expenseType));
-        richResponseItem2.setSimpleResponse(simpleResponse);
-
-        richResponse.setItems(Arrays.asList(richResponseItem2));
 
         ResponseBuilder responseBuilder = new ResponseBuilder();
-        //responseBuilder.add(richResponse);
-
-
         Button learnMoreButton =
                 new Button()
-                        .setTitle("basic_card_button_text")
+                        .setTitle("Delete Assistant")
                         .setOpenUrlAction(new OpenUrlAction().setUrl("https://assistant.google.com"));
         List<Button> buttons = new ArrayList<>();
         buttons.add(learnMoreButton);
-        String text = "basic_card_text";
         responseBuilder
-                .add("basic_card_response")
+                .add(String.format(" Expense of %s rupees has been added to %s ", amount,
+                        expenseType))
                 .add(
                         new BasicCard()
-                                .setTitle("basic_card_title")
-                                .setSubtitle("basic_card_sub_title")
-                                .setFormattedText(text)
+                                .setTitle("EXPENSE ADDED")
+                                .setSubtitle("Expense hae been added")
+                                .setFormattedText(String.format(" Expense of %s rupees has been added to %s, feel " +
+                                                "free to add more ", amount,
+                                        expenseType))
                                 .setImage(
                                         new Image()
-                                                .setUrl("https://github.com/jocnud/jocnud.github.io/blob/master/images/s4.jpg")
+                                                .setUrl("https://github.com/jocnud/jocnud.github" +
+                                                        ".io/blob/master/images/s4.jpg")
                                                 .setAccessibilityText("basic_card_alt_text"))
                                 .setButtons(buttons))
                 .addSuggestions(SUGGESTIONS);
