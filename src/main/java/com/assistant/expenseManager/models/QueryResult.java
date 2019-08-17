@@ -16,7 +16,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class QueryResult {
     private String queryText;
-    private Map<String, Object> parameters;
+    private Map parameters;
     private boolean allRequiredParamsPresent;
     private String fulfillmentText;
     private List<FulfillmentMessage> fulfillmentMessages;
