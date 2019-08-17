@@ -50,7 +50,7 @@ public class ExpenseApp extends DialogflowApp {
                 expenseType));
         richResponseItem2.setSimpleResponse(simpleResponse);
 
-        richResponse.setItems(Arrays.asList(richResponseItem1,richResponseItem2));
+        richResponse.setItems(Arrays.asList(richResponseItem2));
 
         ResponseBuilder responseBuilder = new ResponseBuilder();
         responseBuilder.add(richResponse);
