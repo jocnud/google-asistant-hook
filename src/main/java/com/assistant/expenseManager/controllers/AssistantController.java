@@ -1,10 +1,10 @@
 package com.assistant.expenseManager.controllers;
 
+import com.assistant.expenseManager.models.BasicCard;
 import com.assistant.expenseManager.models.FF;
 import com.assistant.expenseManager.models.FulfillmentMessage;
 import com.assistant.expenseManager.models.FulfillmentRequest;
 import com.assistant.expenseManager.models.FulfillmentResponse;
-import com.assistant.expenseManager.models.TextMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -39,15 +39,17 @@ public class AssistantController {
         FF ff = new FF(fulfillmentRequest);
         FulfillmentResponse ffR = ff.getResponse();
 
-        TextMessage textMessage = TextMessage.builder()
-                .text(Arrays.asList("", ""))
+
+        FulfillmentMessage ffm = FulfillmentMessage.builder()
+                .basicCard(BasicCard.builder()
+                        .title("Shahbaz Add Title")
+                        .formattedText(" Got the intent " + name)
+                        .subtitle("Add Expense")
+                        .build())
                 .build();
 
-        ffR.setFulfillmentMessages(Arrays.asList(
-                FulfillmentMessage.builder().text(TextMessage.builder()
-                        .text(Arrays.asList("Hello your intent is" + name, "Any thing else"))
-                        .build()).build())
-        );
+        ffR.setFulfillmentMessages(Arrays.asList(ffm));
+
 
         ffR.setFulfillmentText(" Hello your intent is " + name);
         return ResponseEntity.ok(ffR);
