@@ -53,8 +53,7 @@ public class ExpenseApp extends DialogflowApp {
                                         expenseType))
                                 .setImage(
                                         new Image()
-                                                .setUrl("https://github.com/jocnud/jocnud.github" +
-                                                        ".io/blob/master/images/s4.jpg")
+                                                .setUrl("https://raw.githubusercontent.com/jocnud/jocnud.github.io/master/images/s4.jpg")
                                                 .setAccessibilityText("basic_card_alt_text"))
                                 .setButtons(buttons))
                 .addSuggestions(SUGGESTIONS);
